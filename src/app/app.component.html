@@ -1,5 +1,5 @@
 <div class="container">
-  <<div class="row">
+  <div class="row">
     <div class="col-xs-12">
       <h3>Bind it!</h3>
       <ol>
@@ -17,7 +17,19 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
-      <app-game-control></app-game-control>
+      <!-- here we listen to @Output event emitter from GameController
+      component and call out own onIntervalFired() method to process it.-->
+      <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- so odd events will show always above event numbers.  If we
+      want them to alternate, we would have to use one compoonent like
+      app-number or so which would then display both odd and even 
+      numbers in an alternate fashion. -->
+      <app-odd *ngFor="let oddNumber of oddNumbers" [number]="oddNumber"></app-odd>
+      <app-even *ngFor="let evenNumber of evenNumbers" [number]="evenNumber"></app-even>
     </div>
   </div>
 </div>
